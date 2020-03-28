@@ -30,10 +30,10 @@ def callback():
         abort(400)
     return 'OK'
 
-# 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
+    app.logger.info("Message: " + message)
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text="やほー！今、蝶々を取りに行ってるよ！後で、メッセージしてみてね！"))
 
 import os
