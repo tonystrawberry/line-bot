@@ -15,7 +15,7 @@ line_bot_api = LineBotApi('MmwqAimfy08ghbG8weaNJvmufqpUzQ5tXMMS7XWSaI+TCba3V00lq
 # Channel Secret
 handler = WebhookHandler('634f4b244942250a45adda99aafd9abf')
 
-# 監聽所有來自 /callback 的 Post Request
+# /callback の Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -30,11 +30,11 @@ def callback():
         abort(400)
     return 'OK'
 
-# 處理訊息
+# 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
-    line_bot_api.reply_message(event.reply_token, message)
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text="やほー！今、蝶々を取りに行ってるよ！後で、メッセージしてみてね！"))
 
 import os
 if __name__ == "__main__":
